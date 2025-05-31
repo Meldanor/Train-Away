@@ -8,6 +8,10 @@ _I don't know what the progress will be_
 
 The thoughts about the game.
 
+## [Roadmap](roadmap.md)
+
+My basic roadmap of the stations in the order of importance. Game should be deliverable as soon as possible.
+
 ## Used Template
 
 This project was generated using the [Bevy New 2D](https://github.com/TheBevyFlock/bevy_new_2d) template.
