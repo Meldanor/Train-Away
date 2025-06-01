@@ -52,11 +52,13 @@ struct HexGrid {
 /// A system that spawns the main level.
 pub fn spawn_level(mut commands: Commands, level_assets: Res<LevelAssets>) {
     let layout = HexLayout::new(hexx::HexOrientation::Flat).with_rect_size(SPRITE_SIZE * 2.);
-    let entities = shapes::flat_rectangle([-4, 4, -4, -4])
+    let entities = shapes::flat_rectangle([-6, 6, -6, 6])
         .enumerate()
         .map(|(i, coord)| {
             let pos = layout.hex_to_world_pos(coord);
-            // let rotation = Rot2::degrees(((i % 3) * 60) as f32);
+            let rotation = ((i % 3) as f32) * 60.0;
+            let mut transformation = Transform::from_xyz(pos.x, pos.y, 0.);
+            transformation.rotate_z(Rot2::degrees(rotation).as_radians());
             let entity = commands
                 .spawn((
                     Sprite {
@@ -67,7 +69,7 @@ pub fn spawn_level(mut commands: Commands, level_assets: Res<LevelAssets>) {
                         name: "tracks".into(),
                         aseprite: level_assets.track.clone(),
                     },
-                    Transform::from_xyz(pos.x, pos.y, 0.),
+                    transformation,
                 ))
                 .id();
             (coord, entity)
