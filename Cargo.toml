@@ -18,6 +18,10 @@ tracing = { version = "0.1", features = [
     "release_max_level_warn",
 ] }
 bevy_aseprite_ultra = "0.6.1"
+hexx = { git = "https://github.com/ManevilleF/hexx", rev = "8dc6448e730f8b7bdf573b21a4b1e0e65ec50b34", features = [
+    "serde",
+    "bevy",
+] }
 
 # Your web builds will start failing if you add a dependency that pulls in `getrandom` v0.3+.
 # To fix this, you should tell `getrandom` to use the `wasm_js` backend on Wasm.
