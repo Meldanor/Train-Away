@@ -11,8 +11,10 @@ mod dev_tools;
 mod menus;
 mod screens;
 mod theme;
+mod train_away;
 
-use bevy::{asset::AssetMetaCheck, prelude::*};
+use bevy::{asset::AssetMetaCheck, image::ImageSamplerDescriptor, prelude::*};
+use bevy_aseprite_ultra::AsepriteUltraPlugin;
 
 fn main() -> AppExit {
     App::new().add_plugins(AppPlugin).run()
@@ -40,14 +42,18 @@ impl Plugin for AppPlugin {
                     }
                     .into(),
                     ..default()
+                })
+                .set(ImagePlugin {
+                    default_sampler: ImageSamplerDescriptor::nearest(),
                 }),
         );
 
+        app.add_plugins(AsepriteUltraPlugin);
         // Add other plugins.
         app.add_plugins((
             asset_tracking::plugin,
             audio::plugin,
-            demo::plugin,
+            train_away::plugin,
             #[cfg(feature = "dev")]
             dev_tools::plugin,
             menus::plugin,
